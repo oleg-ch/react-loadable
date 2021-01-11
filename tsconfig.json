@@ -1,0 +1,15 @@
+{
+    "extends": "@oleg-ch/tsconfig",
+    "include": ["src"],
+    "compilerOptions": {
+        "lib": ["es2020"],
+        "target": "es2020",
+
+        "skipLibCheck": true,
+
+        // Overwrites for @oleg-ch/tsconfig:
+        "noEmit": false,
+        "removeComments": false,
+        "sourceMap": true
+    }
+}

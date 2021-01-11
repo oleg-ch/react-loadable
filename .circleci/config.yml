@@ -1,0 +1,167 @@
+version: 2.1
+
+references:
+  workspace_root: &workspace_root
+    ~/app
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
+  feature_branch_only: &feature_branch_only
+    filters:
+      branches:
+        only: /^(hotfix|feature)-[a-zA-Z]{2,}-[0-9]+-.+$/
+
+  master_branch_only: &master_branch_only
+    filters:
+      branches:
+        only: master
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:14.15.1
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    working_directory: ~/app
+    environment:
+      TZ: "Europe/Kiev"
+
+commands:
+  add_npm_auth:
+    description: "Configuring npm access..."
+    steps:
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ./.npmrc
+
+  add_github_auth:
+    description: "Configuring github access..."
+    steps:
+      - run: git config user.email "$GH_USER_EMAIL"
+      - run: git config user.name "$GH_USER_NAME"
+      - add_ssh_keys:
+          fingerprints:
+            - "24:99:c8:a2:ff:eb:c8:a3:c6:2c:83:29:93:57:51:3c"
+
+  install_deps:
+    description: "Installing project dependencies..."
+    steps:
+      - run: npm install
+
+  save_deps_cache:
+    description: "Saving project dependencies to cache..."
+    steps:
+      - save_cache:
+          key: npm-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths: ["~/.npm"]
+
+  restore_deps_cache:
+    description: "Restoring cached project dependencies..."
+    steps:
+      - restore_cache:
+          keys:
+            - npm-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - npm-cache-v1-{{ arch }}-{{ .Branch }}
+            - npm-cache-v1
+
+  save_workspace:
+    description: "Saving changes to current workspace..."
+    steps:
+      - persist_to_workspace:
+          root: *workspace_root
+          paths:
+            - node_modules
+            - docs
+            - cjs
+            - esm
+            - types
+
+jobs:
+  dependencies:
+    executor: node
+    steps:
+      - checkout
+      - restore_deps_cache
+      - add_npm_auth
+      - install_deps
+      - save_deps_cache
+      - save_workspace
+
+  lint:
+    executor: node
+    steps:
+      - checkout
+      - *attach_workspace
+      - run: npm run lint
+
+  test:
+    executor: node
+    steps:
+      - checkout
+      - *attach_workspace
+      - run: npm test
+
+  build:
+    executor: node
+    steps:
+      - checkout
+      - *attach_workspace
+      - run: npm run build
+      - save_workspace
+
+  release:
+    executor: node
+    steps:
+      - checkout
+      - *attach_workspace
+      - add_npm_auth
+      - add_github_auth
+      - run:
+          name: "Publishing release to npm..."
+          command: npm run release
+
+workflows:
+  pull_request:
+    jobs:
+      - dependencies:
+          context: global
+          <<: *feature_branch_only
+      - lint:
+          <<: *feature_branch_only
+          requires:
+            - dependencies
+      - test:
+          <<: *feature_branch_only
+          requires:
+            - dependencies
+      - build:
+          <<: *feature_branch_only
+          requires:
+            - test
+            - lint
+
+  npm_publish:
+    jobs:
+      - dependencies:
+          context: global
+          <<: *master_branch_only
+      - lint:
+          <<: *master_branch_only
+          requires:
+            - dependencies
+      - test:
+          <<: *master_branch_only
+          requires:
+            - dependencies
+      - build:
+          <<: *master_branch_only
+          requires:
+            - test
+            - lint
+      - release:
+          context: global
+          <<: *master_branch_only
+          requires:
+            - build

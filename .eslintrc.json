@@ -1,0 +1,6 @@
+{
+    "extends": ["@oleg-ch/eslint-config-node", "@oleg-ch/eslint-config-typescript"],
+    "rules": {
+        "valid-jsdoc": "off"
+    }
+}
