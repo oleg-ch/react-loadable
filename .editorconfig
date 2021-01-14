@@ -1,0 +1,12 @@
+root = true
+
+[*.{js,jsx,json,ts,tsx}]
+charset = utf-8
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+
+[*.{yml,yaml}]
+charset = utf-8
+indent_style = space
+indent_size = 2

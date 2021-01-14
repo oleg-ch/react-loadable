@@ -13,6 +13,7 @@ module.exports = {
         '<rootDir>/src/**/__tests__/**/*.{ts,tsx,js,jsx,mjs}',
         '<rootDir>/src/**/?(*.)(spec|test).{ts,tsx,js,jsx,mjs}',
     ],
+    testTimeout: 20000,
     globals: {
         'ts-jest': {
             tsconfig: {
