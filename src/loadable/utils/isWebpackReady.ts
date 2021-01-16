@@ -1,4 +1,3 @@
-/* global __webpack_modules__ */
 import isObject from 'lodash/isObject'
 
 const isWebpackReady = (getModuleIds: () => string[]): boolean => {

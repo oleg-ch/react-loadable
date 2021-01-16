@@ -12,6 +12,7 @@ import {
     insertModulesProp,
 } from './utils'
 
+// eslint-disable-next-line
 export default function ({ types }: { types: BabelTypes }): PluginObj {
     return {
         visitor: {
