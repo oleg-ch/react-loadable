@@ -1,1 +1,3 @@
-export const B = 4
+import Loadable from './loadable'
+
+export default Loadable

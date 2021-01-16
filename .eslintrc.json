@@ -2,5 +2,8 @@
     "extends": ["@oleg-ch/eslint-config-node", "@oleg-ch/eslint-config-typescript"],
     "rules": {
         "valid-jsdoc": "off"
+    },
+    "globals": {
+        "__webpack_modules__": true
     }
 }

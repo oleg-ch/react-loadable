@@ -1,6 +1,7 @@
 {
     "extends": "@oleg-ch/tsconfig",
     "include": ["src"],
+    "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
     "compilerOptions": {
         "lib": ["es2020"],
         "target": "es2020",

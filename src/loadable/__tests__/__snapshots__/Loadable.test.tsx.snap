@@ -1,0 +1,196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for Loadable Can manually call preload 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Can manually call preload 2`] = `
+<div>
+  MyComponent 
+  {"prop":"foo"}
+</div>
+`;
+
+exports[`Tests for Loadable Can manually call preload 3`] = `
+<div>
+  MyComponent 
+  {"prop":"baz"}
+</div>
+`;
+
+exports[`Tests for Loadable Can use delay and timeout as expected 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Can use delay and timeout as expected 2`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Can use delay and timeout as expected 3`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":true,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Can use delay and timeout as expected 4`] = `
+<div>
+  MyComponent 
+  {"prop":"foo"}
+</div>
+`;
+
+exports[`Tests for Loadable Can use provided render function 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Can use provided render function 2`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Can use provided render function 3`] = `
+<div>
+  MyComponent 
+  {"prop":"baz"}
+</div>
+`;
+
+exports[`Tests for Loadable Loadable.Map renders Loading component with error 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Loadable.Map renders Loading component with error 2`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Loadable.Map renders Loading component with error 3`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":false,"pastDelay":true,"timedOut":false,"error":{}}
+</div>
+`;
+
+exports[`Tests for Loadable Renders with error passed to Loading component 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Renders with error passed to Loading component 2`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Renders with error passed to Loading component 3`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":false,"pastDelay":true,"timedOut":false,"error":{}}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine under normal conditions 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine under normal conditions 2`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine under normal conditions 3`] = `
+<div>
+  MyComponent 
+  {"prop":"foo"}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine under normal conditions 4`] = `
+<div>
+  MyComponent 
+  {"prop":"bar"}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine with Loadable.Map under normal conditions 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine with Loadable.Map under normal conditions 2`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":true,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for Loadable Works fine with Loadable.Map under normal conditions 3`] = `
+<div>
+  <div>
+    MyComponent 
+    {"prop":"baz"}
+  </div>
+  <div>
+    MyComponent 
+    {"prop":"baz"}
+  </div>
+</div>
+`;
+
+exports[`Tests for preloadReady Preloads component if all its chunks are available 1`] = `
+<div>
+  MyComponent 
+  {"prop":"baz"}
+</div>
+`;
+
+exports[`Tests for preloadReady Preloads component if its chunk is available 1`] = `
+<div>
+  MyComponent 
+  {"prop":"baz"}
+</div>
+`;
+
+exports[`Tests for preloadReady Renders Loading component when some chunks are missing 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
+
+exports[`Tests for preloadReady Works fine if webpack prop is undefined 1`] = `
+<div>
+  MyLoadingComponent 
+  {"isLoading":true,"pastDelay":false,"timedOut":false,"error":null}
+</div>
+`;
