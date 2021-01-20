@@ -253,3 +253,52 @@ describe('Tests for preloadReady', () => {
         expect(component.toJSON()).toMatchSnapshot()
     })
 })
+
+describe('Tests for Loadable.Capture', () => {
+    it('Reports modules', async () => {
+        // @ts-ignore
+        const __webpack_modules__ = {
+            './resolved/path/to/Main.js': () => {},
+        }
+
+        const Main = () => <p>MAIN COMPONENT</p>
+        const Loading = () => <p>Loading...</p>
+        // const chunk = { default: Main, __esModule: true }
+
+        const MainAsync = Loadable({
+            loading: Loading,
+            loader: createLoader(200, () => Main),
+            modules: ['./Main.js'],
+            webpack: () => ['./resolved/path/to/Main.js'],
+        })
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <MainAsync />
+                    </div>
+                )
+            }
+        }
+
+        const modules: any[] = []
+        const report = (m: any) => {
+            modules.push(m)
+        }
+
+        await Loadable.preloadAll()
+
+        const Comp = () => (
+            <Loadable.Capture report={report}>
+                <App />
+            </Loadable.Capture>
+        )
+
+        const component = renderer.create(<Comp />)
+
+        expect(component.toJSON()).toMatchSnapshot()
+        expect(modules.length).toEqual(1)
+        expect(modules[0]).toEqual('./Main.js')
+    })
+})

@@ -8,8 +8,8 @@
     "engines": {
         "node": ">=14.x"
     },
-    "main": "cjs/index.js",
-    "module": "esm/index.js",
+    "main": "cjs/loadable/index.js",
+    "module": "esm/loadable/index.js",
     "types": "types",
     "files": [
         "cjs",
@@ -22,7 +22,7 @@
         "build": "npm run clean && npm run build-cjs && npm run build-esm && npm run build-types",
         "release": "semantic-release",
         "coverage": "npm run test -- --coverage",
-        "clean": "rimraf cjs types",
+        "clean": "rimraf cjs esm types",
         "build-cjs": "tsc --outDir cjs --module CommonJS",
         "build-esm": "tsc --outDir esm --module ES2020",
         "build-types": "tsc --outDir types --declaration --emitDeclarationOnly",

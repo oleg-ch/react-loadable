@@ -23,7 +23,11 @@ import { LoadableContext } from '../LoadableContext'
 import { isWebpackReady } from './isWebpackReady'
 import { render } from './render'
 
-const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?: boolean) => {
+const createLoadable = (
+    fn: LoadFn | LoadMapFn,
+    options: LoadableOptions,
+    isMap?: boolean
+): React.ComponentType<any> => {
     if (!options.loading) {
         throw new Error('react-loadable requires a "loading" component')
     }
@@ -139,7 +143,6 @@ const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?
                 return
             }
 
-            // TODO: do nothing if it is SSR
             this._delay = setTimeout(() => {
                 this._setStateOnMounted({ pastDelay: true })
             }, opts.delay)
@@ -150,7 +153,6 @@ const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?
                 return
             }
 
-            // TODO: do nothing if it is SSR
             this._timeout = setTimeout(() => {
                 this._setStateOnMounted({ timedOut: true })
             }, opts.timeout)
@@ -216,7 +218,7 @@ const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?
         }
     }
 
-    return LoadableComp as React.ComponentType<any>
+    return LoadableComp
 }
 
 export { createLoadable }

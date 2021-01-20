@@ -167,6 +167,14 @@ exports[`Tests for Loadable Works fine with Loadable.Map under normal conditions
 </div>
 `;
 
+exports[`Tests for Loadable.Capture Reports modules 1`] = `
+<div>
+  <p>
+    MAIN COMPONENT
+  </p>
+</div>
+`;
+
 exports[`Tests for preloadReady Preloads component if all its chunks are available 1`] = `
 <div>
   MyComponent 
