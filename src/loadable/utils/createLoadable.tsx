@@ -76,8 +76,8 @@ const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?
 
         _timeout: any
 
-        constructor(props: any) {
-            super(props)
+        constructor(props: any, context: any) {
+            super(props, context)
 
             // noinspection JSIgnoredPromiseFromCall
             init()
@@ -139,6 +139,7 @@ const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?
                 return
             }
 
+            // TODO: do nothing if it is SSR
             this._delay = setTimeout(() => {
                 this._setStateOnMounted({ pastDelay: true })
             }, opts.delay)
@@ -149,6 +150,7 @@ const createLoadable = (fn: LoadFn | LoadMapFn, options: LoadableOptions, isMap?
                 return
             }
 
+            // TODO: do nothing if it is SSR
             this._timeout = setTimeout(() => {
                 this._setStateOnMounted({ timedOut: true })
             }, opts.timeout)
