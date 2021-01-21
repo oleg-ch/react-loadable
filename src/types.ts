@@ -36,6 +36,13 @@ export type LoadMapFn = (map: UserFnMapInput) => LoadingMapState
 
 export type Initializer = () => Promise<any>
 
+export interface ILoadable {
+    preloadAll: () => Promise<void>
+    preloadReady: () => Promise<void>
+    Map: (opts: LoadableOptions) => React.ComponentType<any>
+    Capture: React.FC<ICaptureProps>
+}
+
 export type LoadableOptions = {
     loader: UserFnInput | UserFnMapInput
     loading: React.ComponentType

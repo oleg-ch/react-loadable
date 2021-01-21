@@ -1,9 +1,9 @@
 import { Capture } from './Capture'
 import { LoadableMap } from './LoadableMap'
 import { createLoadable, load, preloadAll, preloadReady } from './utils'
-import { LoadableOptions } from '../types'
+import { LoadableOptions, ILoadable } from '../types'
 
-const Loadable = (opts: LoadableOptions) => {
+const Loadable: ILoadable = (opts: LoadableOptions) => {
     return createLoadable(load, opts)
 }
 
