@@ -30,9 +30,10 @@
     },
     "repository": "git@github.com:oleg-ch/react-loadable.git",
     "keywords": [
+        "react-loadable",
         "webpack",
+        "babel",
         "isomorphic",
-        "middleware",
         "ssr"
     ],
     "author": "",
